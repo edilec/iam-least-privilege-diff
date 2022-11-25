@@ -1,13 +1,15 @@
 {
   "name": "iam-least-privilege-diff",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Compare identity policies and surface privilege changes in human-readable form.",
   "type": "module",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "test": "node --test"
+    "lint": "node --check bin/iam-least-privilege-diff.mjs && node --check src/index.mjs",
+    "test": "node --test",
+    "check": "npm run lint && npm test"
   },
   "license": "MIT",
   "repository": {

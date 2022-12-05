@@ -48,7 +48,7 @@ export function main(argv,now=()=>performance.now()){
   if(!args){process.stderr.write('Usage: iam-least-privilege-diff --root DIR --before FILE --after FILE\n');return 2;}
   let root;
   try{root=fs.realpathSync(args['--root']);if(!fs.statSync(root).isDirectory())throw Error();}
-  catch{process.stdout.write(JSON.stringify(incomplete('input-unreadable','@before'))+'\n');return 2;}
+  catch{process.stderr.write('Invalid root.\n');return 2;}
   const before=read(root,args['--before'],'@before',LIMITS.beforeBytes);
   if(before.error){process.stdout.write(JSON.stringify(incomplete(before.error,'@before'))+'\n');return 2;}
   const after=read(root,args['--after'],'@after',LIMITS.afterBytes);

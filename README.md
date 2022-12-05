@@ -12,7 +12,7 @@ node bin/iam-least-privilege-diff.mjs --root examples/fail --before before.json 
 npm run check
 ```
 
-The CLI emits one JSON report. Exit 0 means `pass`, 1 means `fail`, and 2 means `incomplete` or invalid CLI options. Invalid options produce no stdout. Input files are resolved by realpath within `--root`; escapes, unreadable files, malformed JSON, duplicate decoded keys (including escaped spellings), and invalid UTF-8 yield `incomplete`. No files are written.
+The CLI emits one JSON report. Exit 0 means `pass`, 1 means `fail`, and 2 means `incomplete` or invalid CLI options. Invalid options or root produce no stdout. Input files are resolved by realpath within `--root`; escapes, unreadable named files, malformed JSON, duplicate decoded keys (including escaped spellings), and invalid UTF-8 yield `incomplete`. No files are written.
 
 ## Accepted input
 

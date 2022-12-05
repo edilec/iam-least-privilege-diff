@@ -78,3 +78,8 @@ test('CLI uses strict UTF-8, enforces both byte limits, and leaves stdout empty 
   }
   fs.writeFileSync(path.join(root,'after.json'),Buffer.from([0xff]));r=cli(['--root',root,'--before','before.json','--after','after.json']);assert.equal(r.status,2);assert.equal(JSON.parse(r.stdout).status,'incomplete');
 }));
+test('invalid root is configuration failure with empty stdout; missing named input is incomplete',()=>fixture(root=>{
+  fs.writeFileSync(path.join(root,'before.json'),JSON.stringify(document()));
+  let r=cli(['--root',path.join(root,'missing'),'--before','before.json','--after','after.json']);assert.equal(r.status,2);assert.equal(r.stdout,'');
+  r=cli(['--root',root,'--before','before.json','--after','missing.json']);assert.equal(r.status,2);assert.equal(JSON.parse(r.stdout).status,'incomplete');assert.equal(JSON.parse(r.stdout).findings[0].ruleId,'input-unreadable');
+}));

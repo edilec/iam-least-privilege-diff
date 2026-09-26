@@ -1,0 +1,1 @@
+{"schemaVersion":"1","complete":true,"policy":{"Version":"2012-10-17","Statement":[{"Sid":"Read","Effect":"Allow","Action":["s3:GetObject","s3:*"],"Resource":["arn:aws:s3:::example/*","*"]}]}}
